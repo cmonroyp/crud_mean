@@ -50,7 +50,8 @@ function addAlumno(req,res){
     alumno.nombre = params.nombre;
     alumno.apellido = params.apellido;
     alumno.email = params.email;
-
+    alumno.facultad = params.facultad;
+    
     console.log('datos de entrada',params);
     if(params.password){
         bcrypt.hash(params.password,null,null,(err,hash)=>{

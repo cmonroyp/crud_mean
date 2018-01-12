@@ -7,7 +7,7 @@ var app = express();
 
 // cargar rutas
 var alumno_routes = require('./routes/alumno.route');
-
+var facultad_route = require('./routes/facultad.route');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 
 // rutas base
 app.use('/api', alumno_routes);
+app.use('/api',facultad_route);
 
 
 module.exports = app;

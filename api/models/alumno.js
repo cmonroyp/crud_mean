@@ -7,7 +7,8 @@ var AlumnoSchema = Schema({
     nombre: String,
     apellido: String,
     email: String,
-    password: String    
+    password: String,
+    facultad: {type: Schema.ObjectId,ref:'Facultades'} 
 });
 
 module.exports = mongoose.model('Alumno',AlumnoSchema);

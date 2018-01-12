@@ -5,8 +5,7 @@ var Schema = mongoose.Schema;
 
 var FacultadSchema = Schema({
     nombre: String,
-    descripcion: String,
-    alumno: {type: Schema.ObjectId, ref: 'Alumno'}
+    descripcion: String
 });
 
-module.exports = mongoose.model('Facultad',FacultadSchema);
+module.exports = mongoose.model('Facultades',FacultadSchema);
