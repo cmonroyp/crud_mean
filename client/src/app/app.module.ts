@@ -4,13 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+//Materialize CSS 
+import { MaterializeModule } from 'angular2-materialize';
+import { MenuComponent } from './menu/menu.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MaterializeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
