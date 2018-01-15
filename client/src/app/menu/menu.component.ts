@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+//model 
+import { Alumno } from './../models/alumno';
+
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  public alumno: Alumno;
+
+  constructor() {
+    this.alumno = new Alumno('','','','','');
+   }
 
   ngOnInit() {
   }
 
+  onSubmit(){
+    console.log(this.alumno);
+  }
 }
