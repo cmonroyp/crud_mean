@@ -70,3 +70,7 @@ body {
   .input-field .prefix.active {
     color: #000;
   }
+
+  .tituloLogin{
+    color: #eee;
+  }

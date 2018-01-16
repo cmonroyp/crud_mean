@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 //Forms 
 import {FormsModule} from '@angular/forms';
 
@@ -14,6 +14,8 @@ import { MenuComponent } from './menu/menu.component';
 
 //Rutas 
 import { APP_ROUTING } from './services/app.routing';
+//Services 
+import { FacultadService } from './services/facultad.service';
 
 
 @NgModule({
@@ -25,10 +27,11 @@ import { APP_ROUTING } from './services/app.routing';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     MaterializeModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [FacultadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
