@@ -1,11 +1,11 @@
 .titulo{
-    color: #eee;
+    /* color: #eee; */
 }
 
 .input-field {
     position: relative;
     margin-top: 1rem;
-    color: #eee;
+    /* color: #eee; */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 

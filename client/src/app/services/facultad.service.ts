@@ -19,4 +19,5 @@ export class FacultadService {
     let headers = new HttpHeaders({'Content-Type':'application/json'});
     return this._http.get(`${this.url}get_facultades`, {headers});
   }
+
 }

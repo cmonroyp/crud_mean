@@ -5,6 +5,7 @@ import { Alumno } from './../../models/alumno';
 
 //Service 
 import { FacultadService } from '../../services/facultad.service';
+import { AlumnoService } from '../../services/alumno.service';
 
 
 declare let $:any;
@@ -18,8 +19,10 @@ export class CreateStudentComponent implements OnInit {
   public alumno: Alumno;
   public titulo:string;
   public facultades: Array<any>=[];
+  public message: string;
 
-  constructor(public _facultadService: FacultadService) {
+  constructor(private _facultadService: FacultadService,
+              private _alumnoService: AlumnoService) {
 
     this.titulo = 'Crear Alumno'
     this.alumno = new Alumno('','','','','');
@@ -48,6 +51,12 @@ export class CreateStudentComponent implements OnInit {
 
   onSubmit(){
     console.log(this.alumno);
+    this.message = this.alumno.email;
+    // this._alumnoService.addAlumno(this.alumno)
+    //     .subscribe((res:any)=>{
+    //       this.message = res.alumno.email;
+    //     },
+    //     (err)=>console.log(err));
   }
 
 }

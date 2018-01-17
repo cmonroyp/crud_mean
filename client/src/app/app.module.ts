@@ -16,6 +16,7 @@ import { MenuComponent } from './menu/menu.component';
 import { APP_ROUTING } from './services/app.routing';
 //Services 
 import { FacultadService } from './services/facultad.service';
+import { AlumnoService } from './services/alumno.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { FacultadService } from './services/facultad.service';
     MaterializeModule,
     APP_ROUTING
   ],
-  providers: [FacultadService],
+  providers: [FacultadService,AlumnoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

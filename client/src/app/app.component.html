@@ -1,5 +1,25 @@
+<nav>
+  <div class="nav-wrapper grey darken-3">      
+    <img src="assets/images/logo.png" width="64" class="circle responsive-img">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a  [routerLink]="['/']"><i class="material-icons left">home</i>Home</a></li>
+    </ul>
+  </div>
+</nav>
+
+
 <div>
   <!-- <app-menu></app-menu> -->
 <router-outlet></router-outlet>
 </div>
 
+
+  
+  <footer class="page-footer grey darken-4">
+  <div class="footer-copyright grey darken-3">
+      <div class="container">
+          © 2018 Carlos M. Monroy
+      <a class="grey-text text-lighten-4 right" href="https://twitter.com/CmonroyP">@CmonroyP</a>
+      </div>
+  </div>
+  </footer>

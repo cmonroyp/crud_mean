@@ -1,11 +1,11 @@
 <div class="row">
     <div class="section"></div>
-  <form materialize class="col s12" #createForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="container col m6 offset-m3 s12 card grey darken-3">
+  <form materialize class="col s12" #createForm="ngForm" (ngSubmit)="onSubmit();createForm.reset()">
+    <!-- <div class="container col m6 offset-m3 s12 card grey darken-3 z-depth-5"> -->
+    <div class="container col m6 offset-m3 s12 card grey lighten-5 z-depth-4">
       <div class="row">
-          <div class="section"></div>
+          <!-- <div class="section"></div>   -->
           <h5 class="center-align titulo">{{titulo}}</h5>
-
           <div class="row container col s10 offset-m1">
             <div class="input-field col s6 ">
               <input type="text" class="validate"
@@ -48,7 +48,7 @@
 
           <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
               <select materialize="material_select" [materializeSelectOptions]="facultades" 
-                      [(ngModel)]="alumno.facultad" name="alumno.facultad">
+                      [(ngModel)]="alumno.facultad" name="alumno.facultad" #facultad="ngModel" required>
                   <option value="" disabled selected>Seleccione Facultad</option>
                   <option *ngFor="let option of facultades" [value]="option._id">{{option.nombre}}</option>
               </select>
@@ -71,6 +71,13 @@
             
         </div>
       </div>
-    </form>
+       <!-- mensaje -->
+       <div *ngIf="message">
+         <div class="col m4 offset-m4 s12 card-panel green lighten-4 green-text text-darken-4">
+           <b>Success!</b> Loguearse con el Correo {{message}}
+         </div>
+       </div>
 
+    </form>
+   
 </div>
