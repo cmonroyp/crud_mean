@@ -51,12 +51,12 @@ export class CreateStudentComponent implements OnInit {
 
   onSubmit(){
     console.log(this.alumno);
-    this.message = this.alumno.email;
-    // this._alumnoService.addAlumno(this.alumno)
-    //     .subscribe((res:any)=>{
-    //       this.message = res.alumno.email;
-    //     },
-    //     (err)=>console.log(err));
+   // this.message = this.alumno.email;
+    this._alumnoService.addAlumno(this.alumno)
+        .subscribe((res:any)=>{
+          this.message = res.alumno.email;
+        },
+        (err)=>console.log(err));
   }
 
 }

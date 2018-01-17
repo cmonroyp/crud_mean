@@ -3,8 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 //Api
 import { AppSettings } from './api.settings';
-//Model 
-import { Alumno } from '../models/alumno';
+
 
 
 
@@ -15,7 +14,19 @@ export class AlumnoService {
         this.url = AppSettings.API_ENDPOIND;
     }
 
-    addAlumno(alumno:Alumno){
+    signUp(alumno_to_login, gethash?){
+
+        if(gethash){
+            alumno_to_login.gethash = gethash;  
+        }
+
+        let body = JSON.stringify(alumno_to_login);
+        let headers = new HttpHeaders({'Content-Type':'application/json'});
+
+         return this._http.post(`${this.url}login`,body,{headers});
+    }
+
+    addAlumno(alumno){
         let body = JSON.stringify(alumno);
         let headers = new HttpHeaders({'Content-Type':'application/json'});
 
