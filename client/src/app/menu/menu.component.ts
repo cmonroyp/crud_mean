@@ -19,7 +19,9 @@ export class MenuComponent implements OnInit {
   public identity;
   public getToken;
 
-  constructor(private _alumnoService: AlumnoService) {
+  constructor(private _alumnoService: AlumnoService,
+              private _route: Router,
+              ) {
     this.alumno = new Alumno('','','','','');
    }
 
@@ -28,9 +30,10 @@ export class MenuComponent implements OnInit {
 
   onSubmit(){
     console.log(this.alumno);
+
     this._alumnoService.signUp(this.alumno)
         .subscribe((res:any)=>{
-          console.log(res.findAlumno);
+          //console.log(res.findAlumno);
           this.identity = res.findAlumno;
           if(!res.findAlumno){
             console.log('El usuario no se ha logueado correctamente!.');
@@ -42,13 +45,15 @@ export class MenuComponent implements OnInit {
             this._alumnoService.signUp(this.alumno,true)
                 .subscribe((res:any)=>{
                   this.getToken = res.token;
-
+                  //console.log('token generado',this.getToken)
                   if(this.getToken.length <= 0){
                     console.log('El token no se genero correctamente!.');
                   }
                   else{
                     //se guarda el token en el storage
-                    localStorage.setItem('token',JSON.stringify(this.getToken));
+                    localStorage.setItem('token',this.getToken);
+                    //Redireccionamos
+                    this._route.navigate(['/administracion']);
                   }
                 })
           }

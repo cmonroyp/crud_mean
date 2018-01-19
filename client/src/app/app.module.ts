@@ -17,13 +17,15 @@ import { APP_ROUTING } from './services/app.routing';
 //Services 
 import { FacultadService } from './services/facultad.service';
 import { AlumnoService } from './services/alumno.service';
+import { AdministracionComponent } from './components/administracion/administracion.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    CreateStudentComponent
+    CreateStudentComponent,
+    AdministracionComponent
   ],
   imports: [
     BrowserModule,

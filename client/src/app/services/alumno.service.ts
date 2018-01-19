@@ -9,7 +9,11 @@ import { AppSettings } from './api.settings';
 
 @Injectable()
 export class AlumnoService {
+
+    public token;
+    public identity;
     public url: string;
+
     constructor(private _http: HttpClient){
         this.url = AppSettings.API_ENDPOIND;
     }
@@ -31,5 +35,32 @@ export class AlumnoService {
         let headers = new HttpHeaders({'Content-Type':'application/json'});
 
         return this._http.post(`${this.url}agregar_alumno`,body,{headers});
+    }
+
+    getIdentity(){
+        let identity = JSON.parse(localStorage.getItem('identity'));
+        if(identity !='undefined'){
+            this.identity = identity;
+        }
+        else{
+            this.identity = null;
+        }
+        return this.identity;
+    }
+
+    getToken(){
+        let token = localStorage.getItem('token');
+        if(token !='undefined'){
+            this.token = token;
+        }
+        else{
+            this.token = null;
+        }
+        return this.token;
+    }
+
+    removeToken(){
+        localStorage.removeItem('identity');
+        localStorage.removeItem('token');
     }
 }
