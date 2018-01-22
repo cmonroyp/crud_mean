@@ -3,10 +3,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 //Service 
 import { AlumnoService } from '../services/alumno.service';
-
 //model 
 import { Alumno } from './../models/alumno';
 
+declare var Materialize:any;
 
 @Component({
   selector: 'app-menu',
@@ -37,6 +37,7 @@ export class MenuComponent implements OnInit {
           this.identity = res.findAlumno;
           if(!res.findAlumno){
             console.log('El usuario no se ha logueado correctamente!.');
+            Materialize.toast('El usuario no se ha logueado correctamente!.', 3000, 'red rounded')
           }
           else{
             //guarda usuario en el localstorage
@@ -58,6 +59,9 @@ export class MenuComponent implements OnInit {
                 })
           }
         },
-       (err)=>console.log('Error en la autenticacion', err));
+       (err)=>{
+         console.log('Error en la autenticacion', err)
+         Materialize.toast('Error en la autenticacion', 3000, 'red rounded')
+        });
   }
 }

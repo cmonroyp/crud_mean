@@ -7,9 +7,9 @@
   main {
     flex: 1 0 auto;
   } */
-  .page-footer {
-    position: absolute !important;
+  /* .page-footer {
+    position: fixed !important;
     right: 0;
     bottom: 0;
     left: 0;
-  }
+  } */

@@ -63,4 +63,10 @@ export class AlumnoService {
         localStorage.removeItem('identity');
         localStorage.removeItem('token');
     }
+
+    cargar_alumnos(){
+        let headers = new HttpHeaders({'Content-Type':'application/json',
+                                      'Authorization': this.token});
+      return  this._http.get(`${this.url}get_alumnos`,{headers});
+    }
 }
