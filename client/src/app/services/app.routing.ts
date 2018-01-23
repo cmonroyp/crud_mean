@@ -15,7 +15,8 @@ import { AdministracionComponent } from '../components/administracion/administra
 const APP_ROUTE: Routes =[
     {path:'', component: MenuComponent},
     {path:'crear-alumno', component: CreateStudentComponent},
-    {path:'administracion', component: AdministracionComponent}
+    {path:'administracion', component: AdministracionComponent},
+    {path:'alumnos/:page', component: AdministracionComponent}
 ]
 
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTE);

@@ -5,7 +5,8 @@ var bcrypt = require('bcrypt-nodejs');//encripta la contraseña en la bd.
 var jwt = require('../jwt/jwt');
 //modelo
 var Alumno = require('../models/alumno');
-
+//Paginacion 
+var mongoosePaginate = require('mongoose-pagination');
 
 function getAlumno(req, res){
     let alumno_id = req.params.id;
@@ -26,9 +27,10 @@ function getAlumno(req, res){
 }
 
 function getAlumnos(req, res){
-    
-   var find = Alumno.find({}).sort('nombre');
-
+    var itemPerPage = 4
+    var page = 1;
+   var find = Alumno.find({}).sort('nombre').paginate(page,itemPerPage);
+   
     find.populate({
         path:'facultad',//trae toda la informacion del album
         populate:{//saca la informacion del artista asocida al album

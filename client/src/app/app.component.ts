@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
  import { Router, ActivatedRoute, Params } from '@angular/router';
 declare var $: any;
 declare var jQuery: any;
@@ -11,13 +11,18 @@ import { AlumnoService } from './services/alumno.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(private _alumnoService: AlumnoService,
               private _router: Router){
-
+                
   }
+
+  ngOnInit(){
+    $(".button-collapse").sideNav();
+  }
+
   logout(){
     this._alumnoService.removeToken();
     this._router.navigate(['/']);//quitamos cualquier ruta visitada.
