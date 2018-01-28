@@ -64,9 +64,17 @@ export class AlumnoService {
         localStorage.removeItem('token');
     }
 
-    cargar_alumnos(){
+    cargar_alumnos(page){
+
         let headers = new HttpHeaders({'Content-Type':'application/json',
                                       'Authorization': this.token});
-      return  this._http.get(`${this.url}get_alumnos`,{headers});
+           // headers.append('Parameter', params);
+      return  this._http.get(`${this.url}get_alumnos/${page}`,{headers});
+    }
+
+    editar_alumno(alumno_id){
+        let headers = new HttpHeaders({'Content-Type':'application/json',
+                                      'Authorization': this.token});
+        return this._http.get(`${this.url}get_alumno/${alumno_id}`, {headers});
     }
 }

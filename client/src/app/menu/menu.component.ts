@@ -54,7 +54,7 @@ export class MenuComponent implements OnInit {
                     //se guarda el token en el storage
                     localStorage.setItem('token',this.getToken);
                     //Redireccionamos
-                    this._route.navigate(['/administracion']);
+                    this._route.navigate(['/administracion','1']);//se envia por defecto 1, para que cargue en el encabezado.
                   }
                 })
           }

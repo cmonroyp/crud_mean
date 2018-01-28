@@ -1,5 +1,5 @@
 <div class="container" *ngIf="alumnos.length >= 1">
-  <table class="card centered bordered highlight responsive-table">
+  <table class="card centered bordered highlight responsive-table" id="myTable">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -17,19 +17,24 @@
         <td>{{alumno.apellido}}</td>
         <td>{{alumno.email}}</td>
         <td>{{alumno.facultad['nombre']}}</td>
-        <!-- <td><a (click)="editAlumnoId(item.Id)"><i class="editItem material-icons center">mode_edit</i></a></td>   -->
-        <td><a href="#deleteAlumno" (click)="editAlumnoId(item.Id)"><i class="editItem material-icons center">mode_edit</i></a></td>
+        <td><a [routerLink]="['/edit_student',alumno._id]"><i class="editItem material-icons center">mode_edit</i></a></td>
         <td><a href="#deleteAlumno" (click)="setAlumnosData(alumno._id)"><i class="small material-icons center red-text">delete_forever</i></a></td>
       </tr>
     </tbody>
-            <ul class="pagination">
-              <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-              <li class="active"><a href="#!">1</a></li>
-              <li class="waves-effect"><a href="#!">2</a></li>
-              <li class="waves-effect"><a href="#!">3</a></li>
-              <li class="waves-effect"><a href="#!">4</a></li>
-              <li class="waves-effect"><a href="#!">5</a></li>
-              <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-            </ul>
+
+    <ul class="pagination" >
+
+      <li class="waves-effect waves-teal"><a [routerLink]="['/administracion',prev_page]">
+          <i class="material-icons">chevron_left</i></a>
+      </li>
+      
+      <li class="waves-effect waves-teal"><a [routerLink]="['/administracion',next_page]">
+          <i class="material-icons">chevron_right</i></a>
+      </li>
+      <!-- <div>{{count_alumnos}} de {{total_items}}</div> -->
+    </ul>
+    <span class="teal-text">
+        Total Registros: {{total_items}}
+    </span>
   </table>
 </div>

@@ -27,30 +27,30 @@ function getAlumno(req, res){
 }
 
 function getAlumnos(req, res){
-    var itemPerPage = 4
-    var page = 1;
-   var find = Alumno.find({}).sort('nombre').paginate(page,itemPerPage);
-   
-    find.populate({
-        path:'facultad',//trae toda la informacion del album
-        populate:{//saca la informacion del artista asocida al album
-            path:'facultad',
-            model:'Facultades'//pasamos el modelo del alumno para mostrar todos sus campos.
-        }
-    }).exec((err,facultad)=>{
-        if(err){
-            res.status(500).send({message:'Error en la peticion con el servidor!.'});
-        }
-        else{
-            if(!facultad){
-                res.status(404).send({message:'No se encontraron Alumnos!.'});
+
+    let page = req.params.page || 1;//en caso que no venga la pagina muestra la primera.
+    let limitPage = 4;//registros que se mostrara por pagina.
+
+    Alumno.find({}).sort('nombre')
+          .populate('facultad').paginate(page,limitPage,(err,alumnos,totalAlumnos)=>{
+ 
+            if(err){
+                res.status(500).send({message:'Error en la peticion con el servidor!.'});
             }
-            else{
-                res.status(200).send({alumnos:facultad});
-               // console.log(facultad)
+            else
+            {
+                if(!alumnos){
+                    res.status(404).send({message:'No se encontraron Alumnos!.'});  
+                }
+                else{
+                  return  res.status(200).send({
+                                            alumnos:alumnos,
+                                            total_alumnos: totalAlumnos,
+                                            count_alumnos: alumnos.length
+                                        })
+                }
             }
-        }
-    })
+        });
 }
 
 function addAlumno(req,res){
