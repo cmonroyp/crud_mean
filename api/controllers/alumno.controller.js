@@ -10,7 +10,6 @@ var mongoosePaginate = require('mongoose-pagination');
 
 function getAlumno(req, res){
     let alumno_id = req.params.id;
-
     Alumno.findById(alumno_id,(err,alumno)=>{
         if(err){
             res.status(500).send({message:'Error en el servidor'});

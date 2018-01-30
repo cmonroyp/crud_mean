@@ -4,6 +4,7 @@ export class Alumno {
         public apellido: string,
         public email: string,
         public password: string,
-        public facultad: string
+        public facultad: string,
+        public _id?: string,
     ){}
 }

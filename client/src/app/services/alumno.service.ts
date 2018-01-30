@@ -3,7 +3,8 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 //Api
 import { AppSettings } from './api.settings';
-
+//model 
+import { Alumno } from '../models/alumno';
 
 
 
@@ -72,9 +73,10 @@ export class AlumnoService {
       return  this._http.get(`${this.url}get_alumnos/${page}`,{headers});
     }
 
-    editar_alumno(alumno_id){
+    editar_alumno(alumno_id,token){
+
         let headers = new HttpHeaders({'Content-Type':'application/json',
-                                      'Authorization': this.token});
+                                      'Authorization': token});
         return this._http.get(`${this.url}get_alumno/${alumno_id}`, {headers});
     }
 }
