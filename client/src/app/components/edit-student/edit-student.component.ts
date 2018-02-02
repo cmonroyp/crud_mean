@@ -9,7 +9,7 @@ import { FacultadService } from '../../services/facultad.service';
 //model 
 import { Alumno } from '../../models/alumno';
 
-
+declare var Materialize:any;
 @Component({
   selector: 'app-edit-student',
   templateUrl: './edit-student.component.html',
@@ -29,7 +29,7 @@ export class EditStudentComponent implements OnInit {
               private _facultadService: FacultadService,
               private _location: Location) {
 
-          this.titulo = 'Editar Alumno';
+          this.titulo = 'Actualizar Alumno';
           this.alumno = new Alumno('','','','','');
                }
       
@@ -45,8 +45,8 @@ export class EditStudentComponent implements OnInit {
         
         this._alumnoService.editar_alumno(id,this.token)
             .subscribe((res:any)=>{
-              //console.log(res.alumno)
-              this.alumno = res.alumno;         
+              console.log(res.alumno)
+              this.alumno = res.alumno;
             })
     })
   }
@@ -62,8 +62,21 @@ export class EditStudentComponent implements OnInit {
 
   onSubmit(){
     console.log('Datos Alumno',this.alumno)
+    this._alumnoService.update_alumno(this.alumno,this.token)
+        .subscribe((res:any)=>{
+          console.log('usuario antiguo',res.alumno);
+          console.log('usuario nuevo',res.alumno_new)
+          Materialize.toast('Usuario Actualizado Correctamente!.', 2000, 'green rounded')
 
-    this._location.back();
+          setTimeout(() => {
+            this._location.back();
+          }, 2500);
+        },
+        (err)=>{
+          console.log('Error en la Actualizacion',err);
+          Materialize.toast('Error en la actualizacion del usuario!.', 3000, 'red rounded')
+        })
+
   }
 
 }

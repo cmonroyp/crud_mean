@@ -79,4 +79,13 @@ export class AlumnoService {
                                       'Authorization': token});
         return this._http.get(`${this.url}get_alumno/${alumno_id}`, {headers});
     }
+
+    update_alumno(alumno_to_update,token){
+
+        let params = JSON.stringify(alumno_to_update);
+        let headers = new HttpHeaders({'Content-Type':'application/json',
+                                        'Authorization':token});
+
+        return this._http.put(`${this.url}update_alumno/${alumno_to_update._id}`,params,{headers});
+    }
 }

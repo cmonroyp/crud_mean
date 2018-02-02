@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 //Service 
 import { AlumnoService } from '../../services/alumno.service';
 //model 
 import { Alumno } from '../../models/alumno';
 
+import {MaterializeAction} from 'angular2-materialize';
 declare var Materialize: any;
 declare var $: any;
 
@@ -15,15 +16,17 @@ declare var $: any;
 })
 export class AdministracionComponent implements OnInit {
 
-  public identity: Alumno;
   public token;
   public alumnos: Alumno[]= [];
+  public alumno: Alumno;
   public next_page;
   public prev_page;
   public total_items: number;//muestra el total de alumnos almacenados.
   public count_alumnos: number;//muestra el total de alumnos encontrados por paginado.
   public total_pages:number;
   public alumno_por_pagina = 4;//este limite esta configurado en el controlador alumno.controller
+
+  modalActions = new EventEmitter<string|MaterializeAction>();
 
   constructor(private _alumnoService: AlumnoService,
               private _route: ActivatedRoute) {
@@ -33,18 +36,11 @@ export class AdministracionComponent implements OnInit {
               }
 
   ngOnInit() {
-
+    this.alumno = new Alumno('','','','','');
     //cargamos localStorage
-   this.identity = this._alumnoService.getIdentity();
-   this.token =  this._alumnoService.getToken();
-   Materialize.toast('Bienvenido: ' + this.identity.nombre, 3000, 'green rounded')
-   console.log(this.identity.nombre);
-   console.log(this.token);
-
+    this.token =  this._alumnoService.getToken();
    //Cargar Alumnos 
-   setTimeout(() => {      
-     this.cargar_datos();
-    }, 3500);
+    this.cargar_datos();
   }
 
   cargar_datos(){
@@ -86,8 +82,31 @@ export class AdministracionComponent implements OnInit {
       });
    }
   
-   editAlumnoId(id:any){
+   open_modal(alumno, index){
 
-    console.log(id)
+    this.alumno.nombre = alumno.nombre;
+    this.alumno.apellido = alumno.apellido;
+    this.alumno._id = alumno._id;
+
+    //Evento para abrir el Modal.
+    this.modalActions.emit({action:"modal",params:['open']});
+
+      for(let alm of this.alumnos){   
+        if(alumno._id == alm._id){
+          console.log('su indice es:', index)
+          console.log(alm)
+        }
+      }
+
    }
+
+   //Usado para el Modal
+  closeModal() {
+    this.modalActions.emit({action:"modal",params:['close']});
+  }
+
+  delete_alumno(alumn_id){
+    console.log(alumn_id)
+  }
+
 }

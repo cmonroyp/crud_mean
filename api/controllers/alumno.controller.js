@@ -55,15 +55,14 @@ function getAlumnos(req, res){
 function addAlumno(req,res){
     let alumno = new Alumno();
     let params = req.body;
-
+    
     alumno.nombre = params.nombre;
     alumno.apellido = params.apellido;
     alumno.email = params.email;
     alumno.facultad = params.facultad;
-    
-    console.log('datos de entrada',params);
+
     if(params.password){
-        bcrypt.hash(params.password,null,null,(err,hash)=>{
+        bcrypt.hash(alumno.password,null,null,(err,hash)=>{
             alumno.password = hash;
 
             if(alumno.nombre != null && alumno.apellido != null, alumno.email != null){
@@ -139,9 +138,9 @@ function updateAlumno(req,res){
     let update = req.body;
 
     //compara que el id del usuario, sea el mismo que se guardo en el token.
-    if(alumno_id != req.alumno.sub){
-        return res.status(500).send({message: 'No tienes permiso para actualizar este alumno'});
-    }
+    // if(alumno_id != req.alumno.sub){
+    //     return res.status(500).send({message: 'No tienes permiso para actualizar este alumno'});
+    // }
 
     Alumno.findByIdAndUpdate(alumno_id, update, (err,alumnoUpdated)=>{
 

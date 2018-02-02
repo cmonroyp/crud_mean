@@ -1,5 +1,5 @@
 <div class="container" *ngIf="alumnos.length >= 1">
-  <table class="card centered bordered highlight responsive-table" id="myTable">
+  <table class="card-panel hoverable centered bordered highlight responsive-table" id="myTable">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -12,13 +12,13 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let alumno of alumnos" class="grey lighten-2">
+      <tr *ngFor="let alumno of alumnos;let i=index" class="grey lighten-2">
         <td>{{alumno.nombre}}</td>
         <td>{{alumno.apellido}}</td>
         <td>{{alumno.email}}</td>
         <td>{{alumno.facultad['nombre']}}</td>
         <td><a [routerLink]="['/edit_student',alumno._id]"><i class="editItem material-icons center">mode_edit</i></a></td>
-        <td><a href="#deleteAlumno" (click)="setAlumnosData(alumno._id)"><i class="small material-icons center red-text">delete_forever</i></a></td>
+        <td><a (click)="open_modal(alumno,i)"><i class="small material-icons center red-text">delete_forever</i></a></td>
       </tr>
     </tbody>
 
@@ -36,5 +36,24 @@
     <span class="teal-text">
         Total Registros: {{total_items}}
     </span>
+
   </table>
+
+  <!-- Modal Trigger -->
+<!-- <a class="waves-effect waves-light btn modal-trigger" (click)="openModal()">Modal</a> -->
+<!-- Modal Structure -->
+<div id="deleteStudent" class="modal" materialize="modal" 
+    [materializeParams]="[{dismissible: false}]" 
+    [materializeActions]="modalActions">
+  <div class="modal-content">
+    <h4 class="center-align">Eliminar Alumno</h4>
+    <h6 class="center-align">Desea eliminar el Alumno <span class="red-text">{{alumno.nombre}} {{alumno.apellido}}?.</span> </h6>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="delete_alumno(alumno._id)">Yes</a>
+  </div>
+</div>
+
+
 </div>
