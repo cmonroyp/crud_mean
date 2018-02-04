@@ -18,7 +18,7 @@
         <td>{{alumno.email}}</td>
         <td>{{alumno.facultad['nombre']}}</td>
         <td><a [routerLink]="['/edit_student',alumno._id]"><i class="editItem material-icons center">mode_edit</i></a></td>
-        <td><a (click)="open_modal(alumno,i)"><i class="small material-icons center red-text">delete_forever</i></a></td>
+        <td><a (click)="open_modal(alumno,i)"><i class="small material-icons center red-text" style="cursor: pointer;">delete_forever</i></a></td>
       </tr>
     </tbody>
 
@@ -57,3 +57,12 @@
 
 
 </div>
+
+<div class="fixed-action-btn horizontal click-to-toggle">
+    <a class="btn-floating btn-large red">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a [routerLink]="['home']" class="btn-floating blue"><i class="material-icons">home</i></a></li>
+    </ul>
+  </div>

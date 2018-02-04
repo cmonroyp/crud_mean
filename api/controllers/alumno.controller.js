@@ -163,10 +163,30 @@ function updateAlumno(req,res){
     })
 }
 
+function delete_alumno(req,res){
+    
+    let alumno_id = req.params.id;
+    
+    Alumno.findByIdAndRemove(alumno_id,(err,deleteAlmn)=>{
+        if(err){
+            res.status(500).send({message:'Error con el Servidor!.'});
+        }
+        else{
+            if(!deleteAlmn){
+                res.status(404).send({message:'Alumno no Eliminado!.'});
+            }
+            else{
+                res.status(200).send({alumno: deleteAlmn});
+            }
+        }
+    })
+}
+
 module.exports = {
     getAlumno,
     getAlumnos,
     addAlumno,
     loginAlumno,
-    updateAlumno
+    updateAlumno,
+    delete_alumno
 }

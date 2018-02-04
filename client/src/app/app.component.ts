@@ -5,7 +5,7 @@ declare var jQuery: any;
 //Service 
 import { AlumnoService } from './services/alumno.service';
 
-
+declare var Materialize: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,4 +27,5 @@ export class AppComponent implements OnInit {
     this._alumnoService.removeToken();
     this._router.navigate(['/']);//quitamos cualquier ruta visitada.
   }
+
 }

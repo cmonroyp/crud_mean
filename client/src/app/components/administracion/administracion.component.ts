@@ -106,7 +106,19 @@ export class AdministracionComponent implements OnInit {
   }
 
   delete_alumno(alumn_id){
-    console.log(alumn_id)
+    
+    this._alumnoService.delete_alumno(alumn_id, this.token)
+        .subscribe((res:any)=>{
+          console.log('Alumno Eliminado', res.alumno);
+          
+          //Cargar Alumnos 
+          this.cargar_datos();
+          Materialize.toast('Alumno eliminado Correctamente!.', 2000, 'green rounded')
+        },
+        (err)=>{
+          console.log('Error en la Eliminacion', err);
+          Materialize.toast('Error en al Eleminacion del Usuario!.', 2000, 'red rounded')
+        })
   }
 
 }

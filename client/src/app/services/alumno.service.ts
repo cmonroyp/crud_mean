@@ -14,6 +14,7 @@ export class AlumnoService {
     public token;
     public identity;
     public url: string;
+    public welcome:string;
 
     constructor(private _http: HttpClient){
         this.url = AppSettings.API_ENDPOIND;
@@ -87,5 +88,12 @@ export class AlumnoService {
                                         'Authorization':token});
 
         return this._http.put(`${this.url}update_alumno/${alumno_to_update._id}`,params,{headers});
+    }
+
+    delete_alumno(alumno_to_id, token){
+
+        let headers = new HttpHeaders ({'Content-Type':'application/json', 
+                                        'Authorization':token});
+        return this._http.delete(`${this.url}delete_alumno/${alumno_to_id}`, {headers});
     }
 }

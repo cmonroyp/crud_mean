@@ -19,6 +19,8 @@ import { FacultadService } from './services/facultad.service';
 import { AlumnoService } from './services/alumno.service';
 import { AdministracionComponent } from './components/administracion/administracion.component';
 import { EditStudentComponent } from './components/edit-student/edit-student.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
@@ -27,7 +29,10 @@ import { EditStudentComponent } from './components/edit-student/edit-student.com
     MenuComponent,
     CreateStudentComponent,
     AdministracionComponent,
-    EditStudentComponent
+    EditStudentComponent,
+    HomeComponent,
+    NavComponent,
+  
   ],
   imports: [
     BrowserModule,

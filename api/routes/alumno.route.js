@@ -13,5 +13,6 @@ api.get('/get_alumnos/:page?',md_auth.ensureAuth,AlumnoController.getAlumnos);
 api.post('/agregar_alumno',AlumnoController.addAlumno);
 api.post('/login',AlumnoController.loginAlumno);
 api.put('/update_alumno/:id',md_auth.ensureAuth,AlumnoController.updateAlumno);
+api.delete('/delete_alumno/:id',md_auth.ensureAuth,AlumnoController.delete_alumno);
 
 module.exports = api;
